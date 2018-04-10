@@ -1,0 +1,38 @@
+
+# import OperationSubscriptionPayload from "./generated/prisma.graphql"
+
+type Query {
+  calculator(id: ID): Calculator!
+  operations(calculatorId: ID): [Operation!]!
+}
+
+type Calculator {
+  id: ID!
+  display: String!
+  operations: [Operation]!
+}
+
+type Operation {
+  id: ID!
+  valueOne: String!
+  valueTwo: String!
+  operator: String!
+  result: String
+  calculator: Calculator!
+}
+
+input OperationInput {
+  valueOne: String!
+  valueTwo: String!
+  operator: String!
+  result: String
+}
+
+type Mutation {
+  addCalculator(display: String): Calculator!
+  addOperation(calculatorId: String!, operation: OperationInput!): Operation!
+}
+
+type Subscription {
+  newOperation(calculatorId: ID!): OperationSubscriptionPayload!
+}

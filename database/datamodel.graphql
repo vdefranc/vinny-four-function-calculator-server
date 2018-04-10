@@ -1,0 +1,14 @@
+type Calculator {
+  id: ID! @unique
+  display: String!
+  operations: [Operation!]!
+}
+
+type Operation {
+  id: ID! @unique
+  valueOne: String!
+  valueTwo: String!
+  result: String
+  operator: String!
+  calculator: Calculator!
+}
